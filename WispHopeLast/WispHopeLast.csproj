@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\healSliderAutoSafe.png" />
+    <None Remove="Images\healSliderStopHeal.png" />
+    <None Remove="Images\openerRightArrow.png" />
+    <None Remove="Images\openerRightline.png" />
+    <None Remove="Images\utils_wheel.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\healSliderAutoSafe.png" />
+    <EmbeddedResource Include="Images\healSliderStopHeal.png" />
+    <EmbeddedResource Include="Images\openerRightArrow.png" />
+    <EmbeddedResource Include="Images\openerRightline.png" />
+    <EmbeddedResource Include="Images\utils_wheel.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Divine">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Divine\References\Divine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="Compiler" AfterTargets="PostBuildEvent">
+    <Exec Command="if exist &quot;C:\Program Files\Divine\Divine.Client.exe&quot; call &quot;C:\Program Files\Divine\Divine.Client.exe&quot; -PostBuildEvent -TargetPath=&quot;$(TargetPath)&quot;" />
+  </Target>
+
+</Project>
