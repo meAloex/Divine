@@ -145,20 +145,20 @@ namespace Wisp.Combo
                 if (Tether.CanBeCasted(FriendTarget)
                 && Tether.UseAbility(FriendTarget, TetherBrake))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Greaves != null && Greaves.CanBeCasted(FriendTarget)
                     && Greaves.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Mekanism != null && Mekanism.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
@@ -166,35 +166,35 @@ namespace Wisp.Combo
                     && (Locket.UseAbilityOnOwner(FriendTarget)
                     || Locket.UseAbilityOnFriendTarget(FriendTarget)))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Wand != null && Wand.CanBeCasted(FriendTarget)
                     && Wand.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Stick != null && Stick.CanBeCasted(FriendTarget)
                     && Stick.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Faerie != null && Faerie.CanBeCasted(FriendTarget)
                     && Faerie.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Overcharge != null && Overcharge.CanBeCasted(FriendTarget)
                     && Overcharge.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(50);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
@@ -202,42 +202,42 @@ namespace Wisp.Combo
                     && (Bottle.UseAbilityOnOwner(FriendTarget)
                     || Bottle.UseAbilityOnFriendTarget(FriendTarget)))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(150);
                     return;
                 }
 
                 if (Salve != null && Salve.CanBeCasted(FriendTarget)
                     && Salve.UseAbilityOnOwner(FriendTarget))
                 {
-                    TimerToButton.Sleep(95);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Lotus != null && Lotus.CanBeCasted(FriendTarget)
                     && Lotus.UseAbilityOnFriendTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(80);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Glimmer != null && Glimmer.CanBeCasted(FriendTarget)
                     && Glimmer.UseAbilityOnFriendTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(80);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Pipe != null && Pipe.CanBeCasted(FriendTarget)
                     && Pipe.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(80);
+                    TimerToButton.Sleep(100);
                     return;
                 }
 
                 if (Crimson != null && Crimson.CanBeCasted(FriendTarget)
                     && Crimson.UseAbilityNoTarget(FriendTarget))
                 {
-                    TimerToButton.Sleep(80);
+                    TimerToButton.Sleep(100);
                     return;
                 }
             }
