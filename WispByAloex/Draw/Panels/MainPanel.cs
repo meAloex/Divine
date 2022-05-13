@@ -202,7 +202,7 @@ namespace WispByAloex.Draw
                 OpenerUpText,
                 MainSettings.WhiteColure,
                 "Neometric",
-                17);
+                17 * MainSettings.Scaling);
 
             //Отрисовка кругов на кнопках вместе с текстом подстраивая яркость
             if (MainMenu.WispAutoSafeEnble.Value)
