@@ -5,7 +5,7 @@ using Divine.Entity.Entities.Units.Heroes;
 using Wisp;
 using Wisp.Info;
 
-namespace WispHopeLast.Items
+namespace WispByAloex.Items
 {
     internal abstract class ItemsChecker : FinalAbilItems
     {

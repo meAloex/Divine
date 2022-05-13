@@ -5,7 +5,7 @@ using Divine.Input.EventArgs;
 using Divine.Numerics;
 using Divine.Renderer;
 
-namespace WispHopeLast.Draw.Panels
+namespace WispByAloex.Draw.Panels
 {
     internal class RightPanel
     {

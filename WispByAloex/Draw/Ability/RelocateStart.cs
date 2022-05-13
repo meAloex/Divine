@@ -9,7 +9,7 @@ using Divine.Renderer;
 using Wisp;
 using Wisp.Info;
 
-namespace WispHopeLast.Draw.Ability
+namespace WispByAloex.Draw.Ability
 {
     internal class RelocateStart
     {

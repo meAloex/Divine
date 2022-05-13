@@ -6,7 +6,7 @@ using Divine.Extensions;
 
 using Divine.Numerics;
 
-namespace WispHopeLast.Draw.Ability
+namespace WispByAloex.Draw.Ability
 {
     internal class TetherRange
     {

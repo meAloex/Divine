@@ -2,9 +2,9 @@
 using Divine.Input;
 using Divine.Input.EventArgs;
 using Divine.Numerics;
-using WispHopeLast.Draw.Panels;
+using WispByAloex.Draw.Panels;
 
-namespace WispHopeLast.Draw
+namespace WispByAloex.Draw
 {
     internal class MovePanel
     {
@@ -12,6 +12,7 @@ namespace WispHopeLast.Draw
         private MainSettings MainSettings;
         private MainPanel MainPanel;
         private RightPanel RightPanel;
+        private UpPanel UpPanel;
 
         public Vector2 StartCursorPos { get; private set; }
         public bool MouseAndButtonPressed { get; private set; }
@@ -19,12 +20,13 @@ namespace WispHopeLast.Draw
         public Vector2 CurrentMousePos { get; private set; }
         public bool MenuButtonPressed { get; private set; }
 
-        public MovePanel(MainMenu mainMenu, MainSettings mainSettings, MainPanel mainPanel, RightPanel rightPanel)
+        public MovePanel(MainMenu mainMenu, MainSettings mainSettings, MainPanel mainPanel, RightPanel rightPanel, UpPanel upPanel)
         {
             MainMenu = mainMenu;
             MainSettings = mainSettings;
             MainPanel = mainPanel;
             RightPanel = rightPanel;
+            UpPanel = upPanel;
 
             InputManager.MouseKeyDown += InputManager_MouseKeyDown;
             InputManager.MouseMove += InputManager_MouseMove;
@@ -110,16 +112,24 @@ namespace WispHopeLast.Draw
                     RightPanel.RectsRightPanel();
                     RightPanel.SliderRectsRightPanel();
 
+                    UpPanel.RectsUpPanel();
+
                     MainSettings.UIXPos = CurrentMousePos.X - StartCursorPos.X;
                     MainSettings.UIYPos = CurrentMousePos.Y - StartCursorPos.Y;
+
+                    UpPanel.RectsUpPanel();
                 }
                 else
                 {
                     MainPanel.RectsMainPanel();
                     MainPanel.SliderRectsMainPanel();
 
+                    UpPanel.RectsUpPanel();
+
                     MainSettings.UIXPos = CurrentMousePos.X - StartCursorPos.X;
                     MainSettings.UIYPos = CurrentMousePos.Y - StartCursorPos.Y;
+
+                    UpPanel.RectsUpPanel();
                 }
             }
         }

@@ -8,7 +8,7 @@ using Divine.Renderer;
 using Wisp;
 using Wisp.Info;
 
-namespace WispHopeLast.Draw
+namespace WispByAloex.Draw
 {
     internal class MainPanel
     {
@@ -27,6 +27,8 @@ namespace WispHopeLast.Draw
         public RectangleF ButtonRightExp { get; private set; }
         public RectangleF ArrowToOpen { get; private set; }
         public RectangleF RightlineToOpen { get; private set; }
+        public RectangleF OpenerUp { get; private set; }
+        public RectangleF OpenerUpText { get; private set; }
         public RectangleF PanelHeroesImages { get; private set; }
         public RectangleF PanelHeroesRectOnOff { get; private set; }
         public RectangleF PanelTextAutoSafeOff { get; private set; }
@@ -101,6 +103,17 @@ namespace WispHopeLast.Draw
                 MainSettings.UIXPos + 361 * MainSettings.Scaling,
                 MainSettings.UIYPos + 29 * MainSettings.Scaling, 
                 3 * MainSettings.Scaling, 16 * MainSettings.Scaling);
+
+            //Кнопка для открытия доп инфо меню
+            OpenerUp = new RectangleF(
+                MainSettings.UIXPos + 255 * MainSettings.Scaling,
+                MainSettings.UIYPos + 10 * MainSettings.Scaling,
+                22 * MainSettings.Scaling, 22 * MainSettings.Scaling);
+
+            OpenerUpText = new RectangleF(
+                MainSettings.UIXPos + 264.5f * MainSettings.Scaling,
+                MainSettings.UIYPos + 9.5f * MainSettings.Scaling,
+                20 * MainSettings.Scaling, 20 * MainSettings.Scaling);
         }
 
         public void SliderRectsMainPanel()
@@ -177,6 +190,19 @@ namespace WispHopeLast.Draw
             RendererManager.DrawImage("Wisp.opener.Rightline.png",
             RightlineToOpen);
             //
+
+            //Отрисовка открытие верхнего слайдера
+            
+            RendererManager.DrawFilledRoundedRectangle(
+                OpenerUp,
+                MainSettings.ButtonCloure,
+                MainSettings.Round10);
+
+            RendererManager.DrawText("i",
+                OpenerUpText,
+                MainSettings.WhiteColure,
+                "Neometric",
+                17);
 
             //Отрисовка кругов на кнопках вместе с текстом подстраивая яркость
             if (MainMenu.WispAutoSafeEnble.Value)
@@ -333,6 +359,12 @@ namespace WispHopeLast.Draw
                 && ButtonRightExp.Contains(e.Position))
             {
                 MainSettings.IsExpRight = !MainSettings.IsExpRight;
+            }
+
+            if (e.MouseKey == MouseKey.Left
+                && OpenerUp.Contains(e.Position))
+            {
+                MainSettings.IsExpUpDng = !MainSettings.IsExpUpDng;
             }
 
             if (e.MouseKey == MouseKey.Left

@@ -6,7 +6,7 @@ using Divine.Helpers;
 using Divine.Entity.Entities.Abilities.Components;
 using Divine.Extensions;
 
-namespace WispHopeLast.Draw.Ability
+namespace WispByAloex.Draw.Ability
 {
     internal class TetherKD
     {

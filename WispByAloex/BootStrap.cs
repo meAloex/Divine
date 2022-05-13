@@ -7,8 +7,10 @@ using Divine.Service;
 using Wisp.Combo;
 using Wisp.Info;
 
-using WispHopeLast.Draw;
-using WispHopeLast.Items;
+using WispByAloex.Draw;
+using WispByAloex.Draw.Panels;
+using WispByAloex.Helpers;
+using WispByAloex.Items;
 
 namespace Wisp
 {
@@ -17,9 +19,12 @@ namespace Wisp
         private MainMenu MainMenu;
         private Init Init;
         private TargetSelector TargetSelector;
+        private AbilityItemManager AbilityItemManager;
         private KeyCombo KeyCombo;
         private MainSettings MainSettings;
         private DrawInfo DrawPanels;
+        private AutoSafe AutoSafe;
+        private AutoSafeDNG AutoSafeDNG;
 
         protected override void OnMainActivate() //Загружается единожды при запуске доты или f5, подгрузка меню
         {
@@ -42,16 +47,22 @@ namespace Wisp
             {
                 Init = new Init();
                 TargetSelector = new TargetSelector(Init, MainMenu);
-                KeyCombo = new KeyCombo(Init, MainMenu);
+                AbilityItemManager = new AbilityItemManager(Init, MainMenu);
+                KeyCombo = new KeyCombo(Init, MainMenu, AbilityItemManager);
                 MainSettings = new MainSettings();
                 DrawPanels = new DrawInfo(Init, MainMenu, MainSettings);
+                AutoSafe = new AutoSafe(Init, MainMenu, AbilityItemManager);
+                AutoSafeDNG = new AutoSafeDNG(Init, MainMenu, AbilityItemManager, MainSettings);
             }
             else
             {
                 Init?.Dispose();
                 TargetSelector?.Dispose();
+                AbilityItemManager?.Dispose();
                 KeyCombo?.Dispose();
                 DrawPanels?.Dispose();
+                AutoSafe?.Dispose();
+                AutoSafeDNG?.Dispose();
             }
         }
     }

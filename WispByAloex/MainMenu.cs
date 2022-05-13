@@ -35,7 +35,7 @@ namespace Wisp
 
         public MainMenu()
         {
-            RendererManager.LoadImageFromAssembly("IconMain", "WispHopeLast.Images.utils_wheel.png"); // Подгрузить картинку
+            RendererManager.LoadImageFromAssembly("IconMain", "WispByAloex.Images.utils_wheel.png"); // Подгрузить картинку
 
             var rootMenu = MenuManager.CreateRootMenu("Wisp test").SetHeroImage(HeroId.npc_dota_hero_wisp); // Создаем виспа в меню
             WispEnabler = rootMenu.CreateSwitcher("Enabler"); //Включатель

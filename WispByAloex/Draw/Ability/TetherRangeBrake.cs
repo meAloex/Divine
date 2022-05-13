@@ -6,7 +6,7 @@ using Divine.Extensions;
 using Divine.Particle;
 using Divine.Numerics;
 
-namespace WispHopeLast.Draw.Ability
+namespace WispByAloex.Draw.Ability
 {
     internal class TetherRangeBrake
     {
@@ -25,7 +25,7 @@ namespace WispHopeLast.Draw.Ability
         {
             ParticleManager.CreateRangeParticle("ShowTetherRangeBrake",
                 Init.MyEntity,
-                900,
+                1000,
                 Color.Red);
         }
 

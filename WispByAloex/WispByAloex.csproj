@@ -6,19 +6,59 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\healSliderAutoSafe.png" />
-    <None Remove="Images\healSliderStopHeal.png" />
-    <None Remove="Images\openerRightArrow.png" />
-    <None Remove="Images\openerRightline.png" />
-    <None Remove="Images\utils_wheel.png" />
+    <Compile Remove="Extensions\AbilityExtensions - Копировать.cs" />
+    <Compile Remove="Extensions\NewFile1.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Extensions\NewFile1.txt" />
+    <None Remove="Images\antimageUlt.png" />
+    <None Remove="Images\AxeUlt.png" />
+    <None Remove="Images\AxeUltBlure.png" />
+    <None Remove="Images\BatellRorrr.png" />
+    <None Remove="Images\BlackRectBlure.png" />
+    <None Remove="Images\healSliderAutoSafe.png" />
+    <None Remove="Images\healSliderStopHeal.png" />
+    <None Remove="Images\LinaUlt.png" />
+    <None Remove="Images\LinaUltBlured.png" />
+    <None Remove="Images\LionUlt.png" />
+    <None Remove="Images\LionUltBlured.png" />
+    <None Remove="Images\Lock.png" />
+    <None Remove="Images\openerRightArrow.png" />
+    <None Remove="Images\openerRightline.png" />
+    <None Remove="Images\QueenUlt.png" />
+    <None Remove="Images\QueenUltBlured.png" />
+    <None Remove="Images\RectBlure.png" />
+    <None Remove="Images\rounded-in-photoretrica.png" />
+    <None Remove="Images\SFUlt.png" />
+    <None Remove="Images\utils_wheel.png" />
+    <None Remove="Images\ZeusUlt.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\AxeUlt.png" />
+    <EmbeddedResource Include="Images\AxeUltBlure.png" />
+    <EmbeddedResource Include="Images\BatellRorrr.png" />
+    <EmbeddedResource Include="Images\BlackRectBlure.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\healSliderAutoSafe.png" />
     <EmbeddedResource Include="Images\healSliderStopHeal.png" />
+    <EmbeddedResource Include="Images\antimageUlt.png" />
+    <EmbeddedResource Include="Images\LinaUlt.png" />
+    <EmbeddedResource Include="Images\LinaUltBlured.png" />
+    <EmbeddedResource Include="Images\LionUlt.png" />
+    <EmbeddedResource Include="Images\LionUltBlured.png" />
+    <EmbeddedResource Include="Images\Lock.png" />
     <EmbeddedResource Include="Images\openerRightArrow.png" />
     <EmbeddedResource Include="Images\openerRightline.png" />
+    <EmbeddedResource Include="Images\QueenUlt.png" />
+    <EmbeddedResource Include="Images\QueenUltBlured.png" />
+    <EmbeddedResource Include="Images\RectBlure.png" />
+    <EmbeddedResource Include="Images\rounded-in-photoretrica.png" />
+    <EmbeddedResource Include="Images\SFUlt.png" />
     <EmbeddedResource Include="Images\utils_wheel.png" />
+    <EmbeddedResource Include="Images\ZeusUlt.png" />
   </ItemGroup>
 
   <ItemGroup>

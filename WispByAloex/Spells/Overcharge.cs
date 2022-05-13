@@ -4,7 +4,7 @@ using Divine.Extensions;
 
 using Wisp.Info;
 
-using WispHopeLast.Items;
+using WispByAloex.Items;
 
 namespace Wisp.Spells
 {

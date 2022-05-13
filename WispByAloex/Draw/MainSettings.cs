@@ -1,7 +1,7 @@
 ﻿using Divine.Numerics;
 using Divine.Renderer;
 
-namespace WispHopeLast.Draw
+namespace WispByAloex.Draw
 {
     internal class MainSettings
     {
@@ -27,7 +27,7 @@ namespace WispHopeLast.Draw
         public float UIYPos = 0;
 
         public bool IsExpRight = false;
-        public bool IsExpRightItems = false;
+        public bool IsExpUpDng = false;
 
         public float MainPanelWidth = 417;
         public float MainPanelHeight = 349;
@@ -35,19 +35,50 @@ namespace WispHopeLast.Draw
         public float MainPanelWidthRight = 392;
         public float MainPanelHeightRight = 349;
 
+        public float MainPanelWidthUP = 417;
+        public float MainPanelHeightUP = 253;
+
+        public bool QueenUltRectEnable = true;
+        public bool AxeUltRectEnable = true;
+        public bool LionUltRectEnable = true;
+        public bool LinaUltUltRectEnable = true;
+
         public MainSettings()
         {
             Scaling = RendererManager.ScalingNew;
-            RendererManager.LoadImageFromAssembly("Wisp.opener.RightArrow.png", "WispHopeLast.Images.openerRightArrow.png");
-            RendererManager.LoadImageFromAssembly("Wisp.opener.Rightline.png", "WispHopeLast.Images.openerRightline.png");
-            RendererManager.LoadImageFromAssembly("Wisp.sliderforAutoSafe.png", "WispHopeLast.Images.healSliderAutoSafe.png");
-            RendererManager.LoadImageFromAssembly("Wisp.healSliderStopHeal.png", "WispHopeLast.Images.healSliderStopHeal.png");
+            RendererManager.LoadImageFromAssembly("Wisp.opener.RightArrow.png", "WispByAloex.Images.openerRightArrow.png");
+            RendererManager.LoadImageFromAssembly("Wisp.opener.Rightline.png", "WispByAloex.Images.openerRightline.png");
+            RendererManager.LoadImageFromAssembly("Wisp.sliderforAutoSafe.png", "WispByAloex.Images.healSliderAutoSafe.png");
+            RendererManager.LoadImageFromAssembly("Wisp.healSliderStopHeal.png", "WispByAloex.Images.healSliderStopHeal.png");
+            RendererManager.LoadImageFromAssembly("Wisp.Lock.png", "WispByAloex.Images.Lock.png");
+            RendererManager.LoadImageFromAssembly("Wisp.BlackRectBlure.png", "WispByAloex.Images.BlackRectBlure.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.antimageUlt.png", "WispByAloex.Images.antimageUlt.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.AxeUltAloex.png", "WispByAloex.Images.AxeUlt.png");
+            RendererManager.LoadImageFromAssembly("Wisp.AxeUltBluredAloex.png", "WispByAloex.Images.AxeUltBlure.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.BatellRorrr.png", "WispByAloex.Images.BatellRorrr.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.LinaUltAloex.png", "WispByAloex.Images.LinaUlt.png");
+            RendererManager.LoadImageFromAssembly("Wisp.LinaUltBluredAloex.png", "WispByAloex.Images.LinaUltBlured.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.LionUltAloex.png", "WispByAloex.Images.LionUlt.png");
+            RendererManager.LoadImageFromAssembly("Wisp.LionUltBluredAloex.png", "WispByAloex.Images.LionUltBlured.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.QueenUltAloex.png", "WispByAloex.Images.QueenUlt.png");
+            RendererManager.LoadImageFromAssembly("Wisp.QueenUltBluredAloex.png", "WispByAloex.Images.QueenUltBlured.png");
+
+            RendererManager.LoadImageFromAssembly("Wisp.SFUlt.png", "WispByAloex.Images.SFUlt.png");
+            RendererManager.LoadImageFromAssembly("Wisp.ZeusUlt.png", "WispByAloex.Images.ZeusUlt.png");
 
             //Скейлинг панелей
             MainPanelWidth *= Scaling;
             MainPanelHeight *= Scaling;
             MainPanelWidthRight *= Scaling;
             MainPanelHeightRight *= Scaling;
+            MainPanelWidthUP *= Scaling;
+            MainPanelHeightUP *= Scaling;
 
             //Для того, что бы подгружалась по середине экрана Y
             UIYPos = (RendererManager.ScreenSize.Y / 2) - (MainPanelHeight / 2);

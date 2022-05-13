@@ -11,42 +11,34 @@ using Wisp.Info;
 using Wisp.Items;
 using Wisp.Spells;
 
+using WispByAloex.Items;
+
 namespace Wisp.Combo
 {
     internal class KeyCombo
     {
-        public Init Init { get; }
-        public MainMenu MainMenu { get; }
+        public Init Init;
+        public MainMenu MainMenu;
+        private AbilityItemManager AbilityItemManager;
+
+        public Sleeper TimerToButton = new Sleeper();
         public Tether Tether { get; private set; }
         public TetherBrake TetherBrake { get; private set; }
         public Overcharge Overcharge { get; private set; }
         public float TimerStartCombo { get; private set; }
 
-        private Sleeper TimerToButton = new Sleeper();
         public Hero FriendTarget { get; private set; }
-        public Greaves Greaves { get; private set; }
-        public Mekanism Mekanism { get; private set; }
-        public Locket Locket { get; private set; }
-        public Wand Wand { get; private set; }
-        public Stick Stick { get; private set; }
-        public Faerie Faerie { get; private set; }
-        public Bottle Bottle { get; private set; }
-        public Salve Salve { get; private set; }
-        public Lotus Lotus { get; private set; }
-        public Glimmer Glimmer { get; private set; }
-        public Pipe Pipe { get; private set; }
-        public Crimson Crimson { get; private set; }
 
-        public KeyCombo(Init init, MainMenu mainMenu)
+        public KeyCombo(Init init, MainMenu mainMenu, AbilityItemManager abilityItemManager)
         {
             Init = init;
             MainMenu = mainMenu;
+            AbilityItemManager = abilityItemManager;
 
             Tether = new Tether(Init.MyEntity.GetAbilityById(AbilityId.wisp_tether), MainMenu);
             TetherBrake = new TetherBrake(Init.MyEntity.GetAbilityById(AbilityId.wisp_tether_break));
             Overcharge = new Overcharge(Init.MyEntity.GetAbilityById(AbilityId.wisp_overcharge), MainMenu, Init);
             MainMenu.WispButtonHeal.ValueChanged += WispButtonHeal_ValueChanged;
-            UpdateManager.CreateIngameUpdate(1000, ItemUpdater);
             UpdateManager.IngameUpdate += UpdateManager_IngameUpdate;
         }
 
@@ -68,124 +60,60 @@ namespace Wisp.Combo
             }
         }
 
-        private void ItemUpdater()
-        {
-            foreach (var item in Init.MyEntity.Inventory!.MainItems)
-            {
-                switch (item.Id)
-                {
-                    case AbilityId.item_guardian_greaves:
-                    {
-                        Greaves = new Greaves(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_mekansm:
-                    {
-                        Mekanism = new Mekanism(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_holy_locket:
-                    {
-                        Locket = new Locket(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_magic_wand:
-                    {
-                        Wand = new Wand(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_magic_stick:
-                    {
-                        Stick = new Stick(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_faerie_fire:
-                    {
-                        Faerie = new Faerie(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_bottle:
-                    {
-                        Bottle = new Bottle(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_flask:
-                    {
-                        Salve = new Salve(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_lotus_orb:
-                    {
-                        Lotus = new Lotus(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_glimmer_cape:
-                    {
-                        Glimmer = new Glimmer(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_pipe:
-                    {
-                        Pipe = new Pipe(item, MainMenu, Init);
-                        break;
-                    }
-                    case AbilityId.item_crimson_guard:
-                    {
-                        Crimson = new Crimson(item, MainMenu, Init);
-                        break;
-                    }
-                }
-            }
-        }
-
         private void UpdateManager_IngameUpdate()
         {
-            if (TimerStartCombo >= GameManager.GameTime)
+            if (AbilityItemManager.TimerToButton.Sleeping)
+            {
+                return;
+            }
+
+            if (TimerStartCombo >= GameManager.GameTime
+                && FriendTarget != null)
             {
                 if (Tether.CanBeCasted(FriendTarget)
-                && Tether.UseAbility(FriendTarget, TetherBrake))
+                    && Tether.UseAbility(FriendTarget, TetherBrake))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Greaves != null && Greaves.CanBeCasted(FriendTarget)
-                    && Greaves.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Greaves != null && AbilityItemManager.Greaves.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Greaves.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Mekanism != null && Mekanism.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Mekanism != null && AbilityItemManager.Mekanism.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Locket != null && Locket.CanBeCasted(FriendTarget)
-                    && (Locket.UseAbilityOnOwner(FriendTarget)
-                    || Locket.UseAbilityOnFriendTarget(FriendTarget)))
+                if (AbilityItemManager.Locket != null && AbilityItemManager.Locket.CanBeCasted(FriendTarget)
+                    && (AbilityItemManager.Locket.UseAbilityOnOwner(FriendTarget)
+                    || AbilityItemManager.Locket.UseAbilityOnFriendTarget(FriendTarget)))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Wand != null && Wand.CanBeCasted(FriendTarget)
-                    && Wand.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Wand != null && AbilityItemManager.Wand.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Wand.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Stick != null && Stick.CanBeCasted(FriendTarget)
-                    && Stick.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Stick != null && AbilityItemManager.Stick.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Stick.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Faerie != null && Faerie.CanBeCasted(FriendTarget)
-                    && Faerie.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Faerie != null && AbilityItemManager.Faerie.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Faerie.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
@@ -198,44 +126,44 @@ namespace Wisp.Combo
                     return;
                 }
 
-                if (Bottle != null && Bottle.CanBeCasted(FriendTarget)
-                    && (Bottle.UseAbilityOnOwner(FriendTarget)
-                    || Bottle.UseAbilityOnFriendTarget(FriendTarget)))
+                if (AbilityItemManager.Bottle != null && AbilityItemManager.Bottle.CanBeCasted(FriendTarget)
+                    && (AbilityItemManager.Bottle.UseAbilityOnOwner(FriendTarget)
+                    || AbilityItemManager.Bottle.UseAbilityOnFriendTarget(FriendTarget)))
                 {
                     TimerToButton.Sleep(150);
                     return;
                 }
 
-                if (Salve != null && Salve.CanBeCasted(FriendTarget)
-                    && Salve.UseAbilityOnOwner(FriendTarget))
+                if (AbilityItemManager.Salve != null && AbilityItemManager.Salve.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Salve.UseAbilityOnOwner(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Lotus != null && Lotus.CanBeCasted(FriendTarget)
-                    && Lotus.UseAbilityOnFriendTarget(FriendTarget))
+                if (AbilityItemManager.Lotus != null && AbilityItemManager.Lotus.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Lotus.UseAbilityOnFriendTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Glimmer != null && Glimmer.CanBeCasted(FriendTarget)
-                    && Glimmer.UseAbilityOnFriendTarget(FriendTarget))
+                if (AbilityItemManager.Glimmer != null && AbilityItemManager.Glimmer.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Glimmer.UseAbilityOnFriendTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Pipe != null && Pipe.CanBeCasted(FriendTarget)
-                    && Pipe.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Pipe != null && AbilityItemManager.Pipe.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Pipe.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
                 }
 
-                if (Crimson != null && Crimson.CanBeCasted(FriendTarget)
-                    && Crimson.UseAbilityNoTarget(FriendTarget))
+                if (AbilityItemManager.Crimson != null && AbilityItemManager.Crimson.CanBeCasted(FriendTarget)
+                    && AbilityItemManager.Crimson.UseAbilityNoTarget(FriendTarget))
                 {
                     TimerToButton.Sleep(100);
                     return;
@@ -246,18 +174,12 @@ namespace Wisp.Combo
                 MainMenu.WispButtonHeal.Value = false;
                 return;
             }
-
-            if (TimerToButton.Sleeping)
-            {
-                return;
-            }
             //Console.WriteLine(TimerToButton);
         }
 
         public void Dispose()
         {
             MainMenu.WispButtonHeal.ValueChanged -= WispButtonHeal_ValueChanged;
-            UpdateManager.DestroyIngameUpdate(ItemUpdater);
             UpdateManager.IngameUpdate -= UpdateManager_IngameUpdate;
         }
     }

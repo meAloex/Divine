@@ -1,4 +1,5 @@
 ﻿
+using Divine.Entity;
 using Divine.Entity.Entities.Abilities;
 using Divine.Entity.Entities.Abilities.Components;
 using Divine.Entity.Entities.Units.Heroes;
@@ -9,7 +10,7 @@ using Divine.Menu.Items;
 using Wisp;
 using Wisp.Info;
 
-namespace WispHopeLast.Items
+namespace WispByAloex.Items
 {
     internal abstract class FinalAbilItems
     {
@@ -79,6 +80,7 @@ namespace WispHopeLast.Items
             foreach (var HeroesID in Init.DicUIInfo)
             {
                 if (HeroesID.Value.EntInfo == friendTarget
+                    && HeroesID.Value.EntInfo.IsAlive
                     && friendTarget.HasModifier("modifier_wisp_tether_haste")
                     && HeroesID.Value.LimitHp < HeroesID.Value.EntInfo.Health)
                 {

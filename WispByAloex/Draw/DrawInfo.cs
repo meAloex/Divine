@@ -2,11 +2,10 @@
 using Wisp.Info;
 using Wisp;
 using Divine.Numerics;
-using System.Net;
-using WispHopeLast.Draw.Panels;
-using WispHopeLast.Draw.Ability;
+using WispByAloex.Draw.Panels;
+using WispByAloex.Draw.Ability;
 
-namespace WispHopeLast.Draw
+namespace WispByAloex.Draw
 {
     internal class DrawInfo
     {
@@ -18,6 +17,7 @@ namespace WispHopeLast.Draw
 
         private MainPanel MainPanel;
         private RightPanel RightPanel;
+        private UpPanel UpPanel;
         private MovePanel MovePanel;
         private RelocateStart RelocateStart;
 
@@ -37,7 +37,8 @@ namespace WispHopeLast.Draw
             ScreenSize = RendererManager.ScreenSize;
             MainPanel = new MainPanel(Init, MainMenu, MainSettings);
             RightPanel = new RightPanel(Init, MainMenu, MainSettings);
-            MovePanel = new MovePanel(MainMenu, MainSettings, MainPanel, RightPanel);
+            UpPanel = new UpPanel(Init, MainMenu, MainSettings);
+            MovePanel = new MovePanel(MainMenu, MainSettings, MainPanel, RightPanel, UpPanel);
             RelocateStart = new RelocateStart(Init, MainMenu, MainSettings);
             TetherKD = new TetherKD(Init, MainMenu, MainSettings);
             TetherRange = new TetherRange(Init, MainMenu, MainSettings);
@@ -100,6 +101,8 @@ namespace WispHopeLast.Draw
                 //Отрисовка правого прямоугольника с слайдером
                 RightPanel.DrawRightPanel();
                 RightPanel.DrawHeroesInfOnRightPanel();
+                //Отрисовка верхнего прямоугольника
+                UpPanel.DrawUpPanel();
                 //Отрисовка основного прямоугольника с слайдером
                 MainPanel.DrawMainPanel();
                 MainPanel.DrawHeroesInfOnMainPanel();
@@ -114,6 +117,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIXPos += Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     RightPanel.RectsRightPanel();
+                    UpPanel.RectsUpPanel();
 
                     MainPanel.SliderRectsMainPanel();
                     RightPanel.SliderRectsRightPanel();
@@ -127,6 +131,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIXPos -= Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     RightPanel.RectsRightPanel();
+                    UpPanel.RectsUpPanel();
 
                     MainPanel.SliderRectsMainPanel();
                     RightPanel.SliderRectsRightPanel();
@@ -141,6 +146,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIYPos += Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     RightPanel.RectsRightPanel();
+                    UpPanel.RectsUpPanel();
 
                     MainPanel.SliderRectsMainPanel();
                     RightPanel.SliderRectsRightPanel();
@@ -154,6 +160,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIYPos -= Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     RightPanel.RectsRightPanel();
+                    UpPanel.RectsUpPanel();
 
                     MainPanel.SliderRectsMainPanel();
                     RightPanel.SliderRectsRightPanel();
@@ -161,6 +168,7 @@ namespace WispHopeLast.Draw
             }
             else
             {
+                UpPanel.DrawUpPanel();
                 //Отрисовка основного прямоугольника с слайдером
                 MainPanel.DrawMainPanel();
                 MainPanel.DrawHeroesInfOnMainPanel();
@@ -175,6 +183,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIXPos += Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     MainPanel.SliderRectsMainPanel();
+                    UpPanel.RectsUpPanel();
                 }
                 else if (MainSettings.UIXPos + MainSettings.MainPanelWidth > ScreenSize.X)
                 {
@@ -185,6 +194,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIXPos -= Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     MainPanel.SliderRectsMainPanel();
+                    UpPanel.RectsUpPanel();
                 }
 
                 if (MainSettings.UIYPos < 0)
@@ -196,6 +206,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIYPos += Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     MainPanel.SliderRectsMainPanel();
+                    UpPanel.RectsUpPanel();
                 }
                 else if (MainSettings.UIYPos + MainSettings.MainPanelHeight > ScreenSize.Y)
                 {
@@ -206,6 +217,7 @@ namespace WispHopeLast.Draw
                     MainSettings.UIYPos -= Math.Abs(accel);
                     MainPanel.RectsMainPanel();
                     MainPanel.SliderRectsMainPanel();
+                    UpPanel.RectsUpPanel();
                 }
             }
         }
@@ -218,6 +230,7 @@ namespace WispHopeLast.Draw
             RelocateStart.Dispose();
             TetherRange.Dispose();
             TetherRangeBrake.Dispose();
+            UpPanel.Dispose();
         }
     }
 }
